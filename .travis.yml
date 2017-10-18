@@ -1,7 +1,6 @@
 language: node_js
 node_js:
 - 6  # recommended version
-- 8
 branches:
   except:
   - gh-pages
@@ -41,36 +40,3 @@ notifications:
     on_success: always
     on_failure: always
     on_start: never
-  slack:
-    rooms:
-      secure: bQlLJ6OvyWUWO51eYjPlEwuGApdYEsqBa8He4gKcTFdjTE6lLxrdu0QE6y1iIroN5+QOk4QpwIYaeWxhgrtVqTNrq9iWnhRR8agcXMPBh1cHnh8EZO6yuC3JE1dd2syKe5Vds67w6KbJedX5GNRg2SVLrL2mHq2syvWAD17BcoI=
-    on_success: change
-    on_failure: change
-    on_start: never
-before_deploy:
-- rm -rf node_modules
-- npm install --production
-- grunt package
-deploy:
-- provider: heroku
-  api_key:
-    secure: faVT3Ne/O7lVo0+pTm6RcXss0ivvSoODaxMkiVwdpk/51/EsRd4+/Gjmp3RGPmW5H5luOephsI8uFMMhgKiu5i3NV58ZSx29Z0aby+bfIhesZGZqJQvxeW8B0J8vlQFnEHP6xc6SAlXSdNjNpDeBaV7WSFSGKGp4Nh5QyO2ySLI=
-  app:
-    master: juice-shop
-    develop: juice-shop-staging
-  on:
-    repo: bkimminich/juice-shop
-    node: 6
-- provider: releases
-  overwrite: true
-  api_key:
-    secure: fHybcH65ZdS5ITVKH2tIVBITVSiRQJ1AuWqLP16gyAz5pdmWbLM5gA/74zCozanRmuB+7pGFbhDNm075JWoEDVrWSFDLnNiXvfgUYa4oVEiWZlLvOfSARaU3AQPlVvFVhIbG9SA5IEwTtNFbyHjqLjGn/DSBpiIDqqxhF57vw7Q=
-  file: dist/*
-  skip_cleanup: true
-  file_glob: true
-  draft: true
-  tag_name: $TRAVIS_TAG
-  on:
-    repo: bkimminich/juice-shop
-    tags: true
-    
